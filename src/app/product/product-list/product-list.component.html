@@ -1,24 +1,29 @@
-<h1>Product List</h1>
-<a routerLink="/product/create">Create</a>
-<table>
-  <tr>
-    <td>Number</td>
-    <td>Name</td>
-    <td>Price</td>
-    <td>Desc</td>
-    <td></td>
-  </tr>
-  <tr *ngFor="let product of products; index as i">
-    <td>{{i+1}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
-    <td>{{product.description}}</td>
-    <td>
-      <a [routerLink]="['/product/edit',product.id]">Edit</a>|
-      <a [routerLink]="['/product/delete',product.id]">Delete</a>
-    </td>
-  </tr>
-</table>
+<div class="container">
+  <h1>Product List</h1>
+  <a routerLink="/product/create">Create</a>
+  <table class="table">
+    <tr>
+      <td>Number</td>
+      <td>Name</td>
+      <td>Price</td>
+      <td>Desc</td>
+      <td>Category</td>
+      <td colspan="2"></td>
+    </tr>
+    <tr *ngFor="let product of products; index as i">
+      <td>{{i+1}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.description}}</td>
+      <td><span *ngIf="product.category">{{product.category.name}}</span></td>
+      <td>
+        <a [routerLink]="['/product/edit',product.id]">Edit</a>|
+        <a [routerLink]="['/product/delete',product.id]">Delete</a>
+      </td>
+    </tr>
+  </table>
+
+</div>
 
 
 

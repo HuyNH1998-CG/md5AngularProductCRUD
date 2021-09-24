@@ -1,25 +1,30 @@
-<h1>Create Product</h1>
-<form [formGroup]="productForm" (ngSubmit)="updateProduct(id)">
-  <table>
-    <tr>
-      <td>Product No</td>
-      <td><input type="number" formControlName="id"></td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td><input type="text" formControlName="name"></td>
-    </tr>
-    <tr>
-      <td>Price</td>
-      <td><input type="text" formControlName="price"></td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td><input type="text" formControlName="description"></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button type="submit">Edit</button></td>
-    </tr>
-  </table>
-</form>
+<div class="container">
+  <h1>Edit Product</h1>
+  <form [formGroup]="productForm" (ngSubmit)="updateProduct(id)">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" formControlName="name"></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td><input type="text" formControlName="price"></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><input type="text" formControlName="description"></td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td><select formControlName="category">
+          <option *ngFor="let category of categories" [ngValue]="category" >{{category.name}}</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit">Edit</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+

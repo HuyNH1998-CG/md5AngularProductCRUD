@@ -9,9 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./category-create.component.css']
 })
 export class CategoryCreateComponent implements OnInit {
-  id: number = this.categoryService.categories.length;
-  categoryForm = new FormGroup({
-    id: new FormControl(++this.id),
+  categoryForm:FormGroup = new FormGroup({
     name: new FormControl(),
   })
 
@@ -24,9 +22,10 @@ export class CategoryCreateComponent implements OnInit {
 
   submit(){
     const category = this.categoryForm.value;
-    this.categoryService.saveCategory(category);
-    this.categoryForm.reset();
-    this.router.navigate(['/category/list'])
+    this.categoryService.saveCategory(category).subscribe(()=>{
+      this.categoryForm.reset();
+      this.router.navigate(['/category/list'])
+    },error => {console.log(error)});
   }
 
 }

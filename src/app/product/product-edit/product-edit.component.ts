@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ProductService} from "../../service/product.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {CategoryService} from "../../service/category.service";
+import {Category} from "../../model/category";
 
 @Component({
   selector: 'app-product-edit',
@@ -11,18 +13,15 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 export class ProductEditComponent implements OnInit {
   productForm! :FormGroup;
   id!:number
+  categories: Category[] = [];
   constructor(private productService:ProductService,
               private activedRoute:ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private categoryService: CategoryService) {
     this.activedRoute.paramMap.subscribe((paramMap:ParamMap)=>{
       this.id = parseInt(paramMap.get('id')!);
-      const product = this.getProduct(this.id)!;
-      this.productForm = new FormGroup({
-        id: new FormControl(product.id),
-        name: new FormControl(product.name),
-        price: new FormControl(product.price),
-        description: new FormControl(product.description),
-      })
+      this.getProduct(this.id);
+      this.getCategory();
     })
   }
 
@@ -30,12 +29,27 @@ export class ProductEditComponent implements OnInit {
   }
 
   getProduct(id: number){
-    return this.productService.findById(id)
+    return this.productService.findById(id).subscribe(product =>{
+      this.productForm = new FormGroup({
+        name: new FormControl(product.name),
+        price: new FormControl(product.price),
+        description: new FormControl(product.description),
+        category: new FormControl(product.category)
+      })
+    })
+  }
+
+  getCategory(){
+    this.categoryService.getAll().subscribe(categories =>{
+      this.categories = categories;
+    })
   }
 
   updateProduct(id:number){
     const product = this.productForm.value;
-    this.productService.updateProduct(id,product);
-    this.router.navigate(['/product/list'])
+    this.productService.updateProduct(id,product).subscribe(()=>{
+      this.router.navigate(['/product/list'])
+    });
+
   }
 }

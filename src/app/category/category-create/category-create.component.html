@@ -1,13 +1,16 @@
-<h1>Create Category</h1>
-<form [formGroup]="categoryForm" (ngSubmit)="submit()">
-  <table>
-    <tr>
-      <td>Name</td>
-      <td><input type="text" formControlName="name"></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button type="submit">Create</button></td>
-    </tr>
-  </table>
-</form>
+<div class="container">
+  <h1>Create Category</h1>
+  <form [formGroup]="categoryForm" (ngSubmit)="submit()">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" formControlName="name"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit">Create</button></td>
+      </tr>
+    </table>
+  </form>
+
+</div>

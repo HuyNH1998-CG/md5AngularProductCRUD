@@ -1,25 +1,27 @@
-<h1>Create Product</h1>
-<form [formGroup]="productForm" (ngSubmit)="delete(id)">
-  <table>
-    <tr>
-      <td>Product No</td>
-      <td><input type="number" formControlName="id"></td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td><input type="text" formControlName="name"></td>
-    </tr>
-    <tr>
-      <td>Price</td>
-      <td><input type="text" formControlName="price"></td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td><input type="text" formControlName="description"></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button type="submit">Delete</button></td>
-    </tr>
-  </table>
-</form>
+<div class="container">
+  <h1>Delete Product</h1>
+  <form [formGroup]="productForm" (ngSubmit)="delete(id)">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" formControlName="name" readonly></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td><input type="text" formControlName="price" readonly></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><input type="text" formControlName="description" readonly></td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td><input type="text" formControlName="category" readonly></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit">Delete</button></td>
+      </tr>
+    </table>
+  </form>
+</div>

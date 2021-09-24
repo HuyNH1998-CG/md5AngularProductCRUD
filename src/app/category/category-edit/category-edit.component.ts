@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Form, FormControl, FormGroup} from "@angular/forms";
 import {CategoryService} from "../../service/category.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
@@ -10,33 +10,32 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 })
 export class CategoryEditComponent implements OnInit {
   categoryForm!: FormGroup;
-  id!:number;
+  id!: number;
 
-  constructor(private categoryService:CategoryService,
+  constructor(private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
-              private router:Router) {
-    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap)=>{
+              private router: Router) {
+    this.activatedRoute.paramMap.subscribe((paramMap : ParamMap)=>{
       this.id = parseInt(paramMap.get('id')!);
-      const category = this.getCategory(this.id)!;
-      this.categoryForm = new FormGroup({
-        id: new FormControl(category.id),
-        name: new FormControl(category.name)
-      })
+      this.getCategory(this.id);
     })
   }
 
   ngOnInit(): void {
   }
 
-  getCategory(id:number){
-    return this.categoryService.findById(id)
+  getCategory(id: number) {
+    return this.categoryService.findById(id).subscribe(category => {
+      this.categoryForm = new FormGroup({
+        name: new FormControl(category.name)
+      })
+    })
   }
 
-  updateCategory(id:number){
+  updateCategory(id: number) {
     const category = this.categoryForm.value;
-    this.categoryService.updateCategory(id,category);
-    this.categoryForm.reset();
-    this.router.navigate(['/category/list']);
-    alert("category updated")
+    this.categoryService.updateCategory(id, category).subscribe(()=>{
+      this.router.navigate(['/category/list']);
+    },error => {console.log(error)});
   }
 }
