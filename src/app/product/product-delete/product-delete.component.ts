@@ -11,7 +11,12 @@ import {CategoryService} from "../../service/category.service";
   styleUrls: ['./product-delete.component.css']
 })
 export class ProductDeleteComponent implements OnInit {
-  productForm! :FormGroup;
+  productForm: FormGroup = new FormGroup({
+    name: new FormControl(),
+    price: new FormControl(),
+    description: new FormControl(),
+    category: new FormControl()
+  })
   id!:number
   categories: Category[] = [];
   constructor(private productService:ProductService,

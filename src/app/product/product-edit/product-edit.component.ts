@@ -11,7 +11,12 @@ import {Category} from "../../model/category";
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-  productForm! :FormGroup;
+  productForm: FormGroup = new FormGroup({
+    name: new FormControl(),
+    price: new FormControl(),
+    description: new FormControl(),
+    category: new FormControl()
+  })
   id!:number
   categories: Category[] = [];
   constructor(private productService:ProductService,

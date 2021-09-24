@@ -9,7 +9,9 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
   styleUrls: ['./category-delete.component.css']
 })
 export class CategoryDeleteComponent implements OnInit {
-  categoryForm!: FormGroup;
+  categoryForm:FormGroup = new FormGroup({
+    name: new FormControl(),
+  })
   id!:number;
 
   constructor(private categoryService:CategoryService,
