@@ -5,20 +5,28 @@
       <tr>
         <td>Name</td>
         <td><input type="text" formControlName="name"></td>
+        <td><p *ngIf="form.name.touched && form.name.errors">
+          <span *ngIf="form.name.errors.required" style="color: red">Name is required</span></p></td>
       </tr>
       <tr>
         <td>Price</td>
         <td><input type="text" formControlName="price"></td>
+        <td><p *ngIf="form.price.touched && form.price.errors">
+          <span *ngIf="form.price.errors.required" style="color: red">Price is required</span></p></td>
       </tr>
       <tr>
         <td>Description</td>
         <td><input type="text" formControlName="description"></td>
+        <td><p *ngIf="form.description.touched && form.description.errors">
+          <span *ngIf="form.description.errors.required" style="color: red">Description is required</span></p></td>
       </tr>
       <tr>
         <td>Category</td>
         <td><select formControlName="category">
           <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
         </select></td>
+        <td><p *ngIf="form.category.touched && form.category.errors">
+          <span *ngIf="form.category.errors.required" style="color: red">Category is required</span></p></td>
       </tr>
       <tr>
         <td></td>

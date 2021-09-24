@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../service/product.service";
 import {Router} from "@angular/router";
 import {Category} from "../../model/category";
@@ -13,10 +13,10 @@ import {CategoryService} from "../../service/category.service";
 export class ProductCreateComponent implements OnInit {
   categories: Category[] = [];
   productForm: FormGroup = new FormGroup({
-    name: new FormControl(),
-    price: new FormControl(),
-    description: new FormControl(),
-    category: new FormControl()
+    name: new FormControl('',Validators.required),
+    price: new FormControl('',Validators.required),
+    description: new FormControl('',Validators.required),
+    category: new FormControl('',Validators.required)
   })
 
   constructor(private productService: ProductService,
@@ -26,6 +26,9 @@ export class ProductCreateComponent implements OnInit {
   ngOnInit(): void {
     this.getCategory()
   }
+  get form(){
+    return this.productForm.controls;
+  }
 
   getCategory(){
     this.categoryService.getAll().subscribe(categories =>{
@@ -33,6 +36,10 @@ export class ProductCreateComponent implements OnInit {
     })
   }
   submit(){
+    if(this.productForm.invalid){
+      alert("Invalid Data detected")
+      return
+    }
     const product = this.productForm.value;
     console.log(product)
     this.productService.saveProduct(product).subscribe(()=>{
