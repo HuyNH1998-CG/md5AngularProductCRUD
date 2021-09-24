@@ -36,6 +36,6 @@ export class ProductEditComponent implements OnInit {
   updateProduct(id:number){
     const product = this.productForm.value;
     this.productService.updateProduct(id,product);
-    this.router.navigate(['/list'])
+    this.router.navigate(['/product/list'])
   }
 }

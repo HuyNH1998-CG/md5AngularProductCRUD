@@ -1,0 +1,15 @@
+<h1>Product Category List</h1>
+<a routerLink="/category/create">Create</a>
+<table>
+  <tr>
+    <td>Number</td>
+    <td>Name</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr *ngFor="let category of categories, index as i">
+    <td>{{i+1}}</td>
+    <td>{{category.name}}</td>
+    <td><a [routerLink]="['/category/edit',category.id]">Edit</a></td>
+    <td><a [routerLink]="['/category/delete',category.id]">Delete</a></td>
+  </tr>
+</table>

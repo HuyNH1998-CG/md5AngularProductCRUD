@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {ProductService} from "../service/product.service";
+import {ProductService} from "../../service/product.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,9 +9,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
-
+  id:number = this.productService.products.length
   productForm: FormGroup = new FormGroup({
-    id: new FormControl(),
+    id: new FormControl(++this.id),
     name: new FormControl(),
     price: new FormControl(),
     description: new FormControl()
@@ -27,7 +27,7 @@ export class ProductCreateComponent implements OnInit {
     const product = this.productForm.value;
     this.productService.saveProduct(product);
     this.productForm.reset()
-    this.router.navigate(['/list'])
+    this.router.navigate(['/product/list'])
   }
 
 }

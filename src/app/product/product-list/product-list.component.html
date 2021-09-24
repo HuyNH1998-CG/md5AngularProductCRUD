@@ -1,5 +1,5 @@
 <h1>Product List</h1>
-<a routerLink="/create">Create</a>
+<a routerLink="/product/create">Create</a>
 <table>
   <tr>
     <td>Number</td>
@@ -14,8 +14,8 @@
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
     <td>
-      <a [routerLink]="['/edit',product.id]">Edit</a>|
-      <a [routerLink]="['/delete',product.id]">Delete</a>
+      <a [routerLink]="['/product/edit',product.id]">Edit</a>|
+      <a [routerLink]="['/product/delete',product.id]">Delete</a>
     </td>
   </tr>
 </table>
