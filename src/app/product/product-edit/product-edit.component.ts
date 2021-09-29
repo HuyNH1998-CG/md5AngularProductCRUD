@@ -4,6 +4,7 @@ import {ProductService} from "../../service/product.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {CategoryService} from "../../service/category.service";
 import {Category} from "../../model/category";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-product-edit',
@@ -22,7 +23,8 @@ export class ProductEditComponent implements OnInit {
   constructor(private productService:ProductService,
               private activedRoute:ActivatedRoute,
               private router: Router,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private toastr: ToastrService) {
     this.activedRoute.paramMap.subscribe((paramMap:ParamMap)=>{
       this.id = parseInt(paramMap.get('id')!);
       this.getProduct(this.id);

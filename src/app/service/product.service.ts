@@ -3,6 +3,7 @@ import {Product} from "../model/product";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 const API_URL = `${environment.apiURL}`
 @Injectable({
   providedIn: 'root'

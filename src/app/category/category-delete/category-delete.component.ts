@@ -16,7 +16,8 @@ export class CategoryDeleteComponent implements OnInit {
 
   constructor(private categoryService:CategoryService,
               private activatedRoute: ActivatedRoute,
-              private router:Router) {
+              private router:Router,
+              ) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap)=>{
       this.id = parseInt(paramMap.get('id')!);
       this.getCategory(this.id);

@@ -19,10 +19,10 @@
       <td>
         <a [routerLink]="['/product/edit',product.id]">Edit</a>|
         <a [routerLink]="['/product/delete',product.id]">Delete</a>
+        <button (click)="delete(product.id!)">Delete 2</button>
       </td>
     </tr>
   </table>
-
 </div>
 
 
